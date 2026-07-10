@@ -37,7 +37,7 @@ export default function Sidebar() {
       <div className="flex items-center justify-between h-16 px-4 border-b border-slate-700 dark:border-slate-800">
         {!collapsed && (
           <span className="text-lg font-bold text-white truncate">
-            Mrima Hills
+            Nairobi Mining Operations
           </span>
         )}
         <button
