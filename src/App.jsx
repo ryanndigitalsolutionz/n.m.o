@@ -22,7 +22,7 @@ const pageTitles = {
 
 function Layout() {
   const location = useLocation();
-  const title = pageTitles[location.pathname] || 'Mrima Hills';
+  const title = pageTitles[location.pathname] || 'Nairobi Mining Operations';
 
   return (
     <div className="flex h-screen bg-slate-50 dark:bg-slate-950">
@@ -32,7 +32,7 @@ function Layout() {
         <main className="flex-1 overflow-y-auto p-6">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/certifications" element={<Certifications />} />
+            <Route path="/certificate" element={<Certificate />} />
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/mineral-sources" element={<MineralSources />} />
             <Route path="/royalties" element={<Royalties />} />
