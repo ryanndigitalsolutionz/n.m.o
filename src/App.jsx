@@ -3,9 +3,21 @@ import { ThemeProvider } from './context/ThemeContext';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
+import Certificate from './components/Certificate';
+import Shipping from './components/Shipping';
+import MineralSources from './components/MineralSources';
+import Royalties from './components/Royalties';
+import Harvesting from './components/Harvesting';
+import Settings from './components/Settings';
 
 const pageTitles = {
   '/': 'Dashboard',
+  '/certificate': 'Certificate',
+  '/shipping': 'Shipping',
+  '/mineral-sources': 'Mineral Sources',
+  '/royalties': 'Royalties',
+  '/harvesting': 'Harvesting',
+  '/settings': 'Settings',
 };
 
 function Layout() {
