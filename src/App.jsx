@@ -22,7 +22,7 @@ const pageTitles = {
 
 function Layout() {
   const location = useLocation();
-  const title = pageTitles[location.pathname] || 'Mrima Hills';
+  const title = pageTitles[location.pathname] || 'Nairobi Mining Operations';
 
   return (
     <div className="flex h-screen bg-slate-50 dark:bg-slate-950">
