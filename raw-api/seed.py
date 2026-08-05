@@ -150,7 +150,11 @@ with app.app_context():
         area="12.5 km²",
         yield_estimate="45,000 tonnes/year",
         water_table="18 m",
-        status="Active"
+        status="Active",
+        mineral_type="Niobium and Corrosive Thorium",
+        security_level="Guarded/Restricted",
+        description="A nationally significant rare earth mining reserve containing niobium and thorium deposits. The area includes protected cultural and ecological zones monitored under government regulations.",
+        nearby_population="Surrounded by the Digo community with several villages within a 15 km radius."
     )
 
     sector_3a = MiningSite(
@@ -162,7 +166,11 @@ with app.app_context():
         area="7.2 km²",
         yield_estimate="22,000 tonnes/year",
         water_table="16 m",
-        status="Active"
+        status="Active",
+        mineral_type="Rare Earth Elements",
+        security_level="Guarded/Restricted",
+        description="Primary extraction zone for rare earth elements with active excavation equipment and mineral processing facilities operating daily.",
+        nearby_population="Nearest settlements are small mining communities supporting the site's workforce."
     )
 
     sector_5c = MiningSite(
@@ -174,7 +182,11 @@ with app.app_context():
         area="9.8 km²",
         yield_estimate="38,000 tonnes/year",
         water_table="20 m",
-        status="Maintenance"
+        status="Maintenance",
+        mineral_type="Rare Earth Elements",
+        security_level="Guarded/Restricted",
+        description="Temporary maintenance sector undergoing equipment inspection and geological reassessment before reopening.",
+        nearby_population="Minimal civilian activity due to restricted maintenance operations."
     )
 
     sector_7b = MiningSite(
@@ -186,7 +198,11 @@ with app.app_context():
         area="8.4 km²",
         yield_estimate="30,000 tonnes/year",
         water_table="17 m",
-        status="Active"
+        status="Active",
+        mineral_type="Rare Earth Elements",
+        security_level="Guarded/Restricted",
+        description="High-yield production block containing concentrated rare earth deposits used for commercial extraction.",
+        nearby_population="Workers' camp and nearby villages provide logistical support for the operation."
     )
 
     sector_9d = MiningSite(
@@ -198,7 +214,171 @@ with app.app_context():
         area="10.1 km²",
         yield_estimate="41,000 tonnes/year",
         water_table="23 m",
-        status="Exploration"
+        status="Exploration",
+        mineral_type="Rare Earth Elements",
+        security_level="Guarded/Restricted",
+        description="Exploration sector where geological surveys and drilling are being conducted to evaluate future mining potential.",
+        nearby_population="Located near sparsely populated woodland with limited permanent settlements."
+    )
+
+    migori_gold_belt = MiningSite(
+        site_name="Migori Gold Belt",
+        county="Migori",
+        latitude=-1.070000,
+        longitude=34.470000,
+        depth="180 m",
+        area="15.4 km²",
+        yield_estimate="28,000 tonnes/year",
+        water_table="24 m",
+        status="Active",
+        mineral_type="Diatomite and Limestone",
+        security_level="Under Maintenance",
+        description="Historic gold mining region with licensed extraction zones and ongoing commercial exploration.",
+        nearby_population="Adjacent to several rural communities with a large artisanal mining workforce."
+    )
+
+    kakamega_gold_fields = MiningSite(
+        site_name="Kakamega Gold Fields",
+        county="Kakamega",
+        latitude=0.280000,
+        longitude=34.750000,
+        depth="95 m",
+        area="9.6 km²",
+        yield_estimate="18,000 tonnes/year",
+        water_table="19 m",
+        status="Exploration",
+        mineral_type="Gold and Phosphate",
+        security_level="Exploring",
+        description="Emerging exploration area targeting gold and phosphate deposits through geological drilling.",
+        nearby_population="Bordered by agricultural communities and protected forest reserves."
+    )
+
+    taita_hills = MiningSite(
+        site_name="Taita Hills",
+        county="Taita Taveta",
+        latitude=-3.370000,
+        longitude=38.350000,
+        depth="135 m",
+        area="11.8 km²",
+        yield_estimate="31,000 tonnes/year",
+        water_table="22 m",
+        status="Active",
+        mineral_type="Gemstones",
+        security_level="Restricted",
+        description="Gemstone-rich mountain range producing a variety of semi-precious minerals under controlled mining licenses.",
+        nearby_population="Nearby Taita communities rely on tourism and small-scale agriculture."
+    )
+
+    lokichar_basin = MiningSite(
+        site_name="Lokichar Basin",
+        county="Turkana",
+        latitude=3.200000,
+        longitude=35.600000,
+        depth="240 m",
+        area="26.5 km²",
+        yield_estimate="60,000 tonnes/year",
+        water_table="30 m",
+        status="Active",
+        mineral_type="Rare Earth Elements",
+        security_level="Guarded",
+        description="Strategic energy and mineral basin supporting exploration of rare earth deposits alongside petroleum infrastructure.",
+        nearby_population="Scattered pastoral settlements primarily inhabited by the Turkana community."
+    )
+
+    geita_mine = MiningSite(
+        site_name="Geita Mine",
+        county="Geita, Tanzania",
+        latitude=-2.870000,
+        longitude=32.180000,
+        depth="210 m",
+        area="18.7 km²",
+        yield_estimate="72,000 tonnes/year",
+        water_table="28 m",
+        status="Active",
+        mineral_type="Copper and Marble",
+        security_level="Guarded",
+        description="Large-scale commercial mining complex with advanced extraction and mineral processing facilities.",
+        nearby_population="Located close to Geita town, supporting thousands of workers and their families."
+    )
+
+    mererani_hills = MiningSite(
+        site_name="Mererani Hills",
+        county="Manyara, Tanzania",
+        latitude=-3.560000,
+        longitude=36.960000,
+        depth="145 m",
+        area="8.3 km²",
+        yield_estimate="14,000 tonnes/year",
+        water_table="20 m",
+        status="Unused",
+        mineral_type="Rare Earth Elements",
+        security_level="Exploring",
+        description="Protected mineral reserve currently inactive while geological assessments continue for future development.",
+        nearby_population="Small Tanzanian settlements with limited industrial activity nearby."
+    )
+
+    kilembe_mines = MiningSite(
+        site_name="Kilembe Mines",
+        county="Kasese, Uganda",
+        latitude=0.190000,
+        longitude=30.020000,
+        depth="170 m",
+        area="13.6 km²",
+        yield_estimate="26,000 tonnes/year",
+        water_table="26 m",
+        status="Maintenance",
+        mineral_type="Diamonds and Cobalt",
+        security_level="Under Maintenance",
+        description="Historic copper mining complex undergoing rehabilitation and infrastructure upgrades.",
+        nearby_population="Close to Kasese municipality and communities supporting restoration projects."
+    )
+
+    kolwezi_copper_belt = MiningSite(
+        site_name="Kolwezi Copper Belt",
+        county="Lualaba, DR Congo",
+        latitude=-10.710000,
+        longitude=25.470000,
+        depth="320 m",
+        area="32.4 km²",
+        yield_estimate="110,000 tonnes/year",
+        water_table="42 m",
+        status="Active",
+        mineral_type="Copper and Chromium",
+        security_level="Guarded",
+        description="One of Africa's largest copper production regions with extensive industrial mining operations.",
+        nearby_population="Dense mining settlements and urban communities surround the industrial zone."
+    )
+
+    tenke_fungurume = MiningSite(
+        site_name="Tenke Fungurume",
+        county="Lualaba, DR Congo",
+        latitude=-10.620000,
+        longitude=26.320000,
+        depth="290 m",
+        area="29.8 km²",
+        yield_estimate="98,000 tonnes/year",
+        water_table="38 m",
+        status="Active",
+        mineral_type="Rare Earth Elements",
+        security_level="Guarded",
+        description="World-renowned copper and rare earth mining operation utilizing modern extraction technologies.",
+        nearby_population="Purpose-built residential communities support thousands of employees."
+    )
+
+    musha_mine = MiningSite(
+        site_name="Musha Mine",
+        county="Eastern Province, Rwanda",
+        latitude=-1.850000,
+        longitude=30.510000,
+        depth="115 m",
+        area="7.1 km²",
+        yield_estimate="19,000 tonnes/year",
+        water_table="18 m",
+        status="Active",
+        mineral_type="Rare Earth Elements",
+        security_level="Restricted",
+        description="Rwandan mineral extraction site focusing on rare earth resources under environmentally controlled operations.",
+        nearby_population="Located near farming communities with regulated mining access."
     )
 
     db.session.add_all([
@@ -206,7 +386,17 @@ with app.app_context():
         sector_3a,
         sector_5c,
         sector_7b,
-        sector_9d
+        sector_9d,
+        migori_gold_belt,
+        kakamega_gold_fields,
+        taita_hills,
+        lokichar_basin,
+        geita_mine,
+        mererani_hills,
+        kilembe_mines,
+        kolwezi_copper_belt,
+        tenke_fungurume,
+        musha_mine
     ])
 
     db.session.commit()
@@ -254,9 +444,8 @@ with app.app_context():
         capacity=40,
         status="Operating"
     )
-
 ]
-
+    
     db.session.add_all(vehicles)
     db.session.commit()
 
