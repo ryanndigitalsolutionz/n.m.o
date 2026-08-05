@@ -54,6 +54,11 @@ class MiningSite(db.Model):
         default=datetime.utcnow
     )
 
+    mineral_type = db.Column(db.String(80))
+    security_level = db.Column(db.String(40))
+    description = db.Column(db.Text)
+    nearby_population = db.Column(db.String(100))
+
     # ---------------- Relationships ----------------
 
     harvest_records = db.relationship(
