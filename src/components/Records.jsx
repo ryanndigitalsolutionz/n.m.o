@@ -16,7 +16,7 @@ import GlassButton from "./ui/GlassButton";
 import Table from "./ui/Table";
 import GlassBadge from "./ui/GlassBadge";
 
-const API = "https://nmo-production.up.railway.app/api";
+import API from "./api";
 
 const typeVariant = (type) => {
   const t = (type || "").toLowerCase();

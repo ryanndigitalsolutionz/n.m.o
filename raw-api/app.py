@@ -27,12 +27,18 @@ from resources.accept_invitation_resource import AcceptInvitationResource
 from resources.forgot_password_resource import ForgotPasswordResource
 from resources.reset_password_resource import ResetPasswordResource
 from resources.settings_resource import SettingsResource
+from resources.access_request_resource import AccessRequestListResource
+from resources.access_request_status_resource import AccessRequestStatusResource
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    CORS(app, resources={r"/*": {"origins": "*"}})
+    CORS(
+        app,
+        resources={r"/api/*": {"origins": "http://localhost:5173"}},
+        supports_credentials=True,
+    )
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -63,10 +69,10 @@ def create_app():
 
     # ---------- Authentication ----------
 
-    api.add_resource(RegisterResource, "/register")
-    api.add_resource(LoginResource, "/login")
-    api.add_resource(CurrentUserResource, "/me")
-    api.add_resource(LogoutResource, "/logout")
+    api.add_resource(RegisterResource, "/api/register")
+    api.add_resource(LoginResource, "/api/login")
+    api.add_resource(CurrentUserResource, "/api/me")
+    api.add_resource(LogoutResource, "/api/logout")
 
     # ---------- Users ----------
 
@@ -120,11 +126,17 @@ def create_app():
 
     # ---------- Password Resets ----------
 
-    api.add_resource(ForgotPasswordResource, "/forgot-password")
-    api.add_resource(ResetPasswordResource, "/reset-password")
+    api.add_resource(ForgotPasswordResource, "/api/forgot-password")
+    api.add_resource(ResetPasswordResource, "/api/reset-password")
 
     # ---------- Settings ----------
+
     api.add_resource(SettingsResource, "/api/settings")
+
+    # ---------- Visitor Access ----------
+
+    api.add_resource(AccessRequestListResource, "/api/access-requests")
+    api.add_resource(AccessRequestStatusResource, "/api/access-requests/<int:request_id>")
 
     return app
 

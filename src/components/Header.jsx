@@ -1,9 +1,7 @@
-import { Bell, Search, MessageSquare, User } from "lucide-react";
+import { Bell, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import Profile from "./Profile";
-import GlassInput from "./ui/GlassInput";
-import Logo from "./ui/Logo";
 
 function useLiveDate() {
   const [now, setNow] = useState(new Date());
@@ -49,15 +47,13 @@ export default function Header({ title }) {
   }, []);
 
   return (
-    <header className="relative z-20 mx-4 my-4 md:mx-6 lg:mx-8 flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-[rgba(255,255,255,0.1)] bg-[rgba(15,34,56,0.35)] px-5 py-4 backdrop-blur-2xl shadow-[0_20px_60px_-30px_rgba(0,0,0,0.7)]">
+    <header className="relative z-20 mx-4 my-4 md:mx-6 lg:mx-8 flex items-center justify-between rounded-3xl border border-[rgba(255,255,255,0.1)] bg-[rgba(15,34,56,0.35)] px-6 py-5 backdrop-blur-2xl shadow-[0_20px_60px_-30px_rgba(0,0,0,0.7)]">
       <div className="flex items-center gap-4 min-w-0">
-        <div className="hidden xl:block">
-          <Logo size="sm" />
-        </div>
+
 
         <div className="flex flex-col gap-0.5 min-w-0">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FDB813]">
-            Welcome back, {user.username || "Operator"}
+            Welcome, {user.username || "Visitor"}
           </span>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white truncate">
             {title}
@@ -66,23 +62,7 @@ export default function Header({ title }) {
         </div>
       </div>
 
-      <div className="flex flex-1 items-center justify-end gap-3">
-        <div className="hidden lg:block flex-1 max-w-sm">
-          <GlassInput
-            type="text"
-            placeholder="Search certificates, employees..."
-            className="text-sm"
-            icon={<Search size={18} className="text-[#7C8CA3]" />}
-          />
-        </div>
-
-        <button
-          className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.1)] bg-white/5 text-[#B9C6D6] transition hover:bg-white/10 hover:text-white"
-          aria-label="Messages"
-        >
-          <MessageSquare size={20} />
-          <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-[#2ECC71] shadow-md" />
-        </button>
+      <div className="flex items-center justify-end gap-3">
 
         <button
           className="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(255,255,255,0.1)] bg-white/5 text-[#B9C6D6] transition hover:bg-white/10 hover:text-white"

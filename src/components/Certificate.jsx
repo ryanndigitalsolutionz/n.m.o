@@ -19,7 +19,7 @@ import GlassButton from "./ui/GlassButton";
 import GlassInput from "./ui/GlassInput";
 import Modal from "./ui/Modal";
 
-const API = "https://nmo-production.up.railway.app/api";
+import API from "./api";
 
 const statusConfig = {
   Active: { variant: "verified", label: "Active" },
