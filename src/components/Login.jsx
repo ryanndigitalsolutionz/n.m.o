@@ -9,17 +9,19 @@ export default function Login() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
+  const googleError =
+    searchParams.get("error");
+
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [registerData, setRegisterData] = useState({ username: "", email: "", password: "", confirmPassword: "" });
-
   const [showLoginPassword, setShowLoginPassword] = useState(false);
+
   const [showRegisterPassword, setShowRegisterPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
+  const [success, setSuccess] = useState("");
   const isLogin = searchParams.get("mode") !== "signup";
 
   const handleLoginChange = (e) => {
@@ -158,6 +160,14 @@ export default function Login() {
         {error && (
           <div className="mb-5 rounded-2xl border border-[rgba(229,57,53,0.4)] bg-[rgba(229,57,53,0.12)] text-[#FF8A80] px-4 py-3 text-sm animate-fade-in">
             {error}
+          </div>
+        )}
+
+        {googleError === "access_denied" && (
+          <div className="mb-5 rounded-2xl border border-[rgba(229,57,53,0.4)] bg-[rgba(229,57,53,0.12)] text-[#FF8A80] px-4 py-3 text-sm animate-fade-in">
+            This Google account hasn't been approved yet.
+            <br />
+            Please request access first.
           </div>
         )}
 
