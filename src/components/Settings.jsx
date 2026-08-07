@@ -157,11 +157,12 @@ export default function Settings() {
           <div className="mt-6 text-[#B9C6D6] space-y-5">
             <div>
               <h4 className="font-bold text-xl text-white mb-2">
-                MineCert Pro v1.0
+                N.M.O (Minecert Pro) v1.0
               </h4>
               <p>
                 Welcome to MineCert Pro, a premium enterprise mining training and certificate
-                management platform designed for modern mining enterprises. The platform
+                management platform designed for modern mining enterprises. As a transformation of Nairobi Mining 
+                Operations and the most trusted in Kenya, the platform
                 streamlines employee management, training, certification, verification,
                 reporting, and analytics from a single centralized dashboard.
               </p>
