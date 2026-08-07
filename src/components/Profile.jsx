@@ -5,6 +5,7 @@ import {
   LogOut,
   ShieldCheck,
 } from "lucide-react";
+import { logoutManagement } from "./management/managementApi";
 
 export default function Profile({ open, onClose }) {
   const navigate = useNavigate();
@@ -25,8 +26,14 @@ export default function Profile({ open, onClose }) {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    async function handleLogout() {
 
-    navigate("/login?mode=signin");
+      await logoutManagement();
+
+      window.location.href = "/login";
+  }
+
+    navigate("/");
   };
 
   if (!open) return null;

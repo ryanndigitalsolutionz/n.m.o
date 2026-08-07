@@ -22,7 +22,7 @@ import PremiumCard from "./ui/PremiumCard";
 import StatCard from "./ui/StatCard";
 import GlassBadge from "./ui/GlassBadge";
 
-const API = "https://nmo-production.up.railway.app/api";
+import API from "./api";
 
 const chartColors = [
   "#FDB813",

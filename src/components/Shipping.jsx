@@ -11,7 +11,7 @@ import GlassBadge from "./ui/GlassBadge";
 import GlassButton from "./ui/GlassButton";
 import Table from "./ui/Table";
 
-const API = "https://nmo-production.up.railway.app/api";
+import API from "./api";
 
 const statusVariant = (status) => {
   if (status === "Delivered") return "verified";

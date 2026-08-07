@@ -8,20 +8,18 @@ import {
   BarChart3,
   Settings,
   LogOut,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
 import Logo from "./ui/Logo";
 
 const navItems = [
-  { to: "/", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/certifications", label: "Certificates", icon: Award },
-  { to: "/harvesting", label: "Training", icon: GraduationCap },
-  { to: "/shipping", label: "Verification", icon: ShieldCheck },
-  { to: "/records", label: "Reports", icon: FileBarChart },
-  { to: "/mineral-sources", label: "Analytics", icon: BarChart3 },
-  { to: "/settings", label: "Settings", icon: Settings },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/dashboard/certifications", label: "Certificates", icon: Award },
+  { to: "/dashboard/harvesting", label: "Training", icon: GraduationCap },
+  { to: "/dashboard/shipping", label: "Verification", icon: ShieldCheck },
+  { to: "/dashboard/records", label: "Reports", icon: FileBarChart },
+  { to: "/dashboard/mineral-sources", label: "Analytics", icon: BarChart3 },
+  { to: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
 export default function Sidebar() {
@@ -40,28 +38,23 @@ export default function Sidebar() {
     <aside
       className={`hidden md:flex flex-col overflow-hidden transition-all duration-500 ${collapsed ? "w-[84px]" : "w-[280px]"} panel-strong rounded-3xl mx-4 my-4 lg:mx-5 lg:my-5 h-[calc(100vh-32px)] lg:h-[calc(100vh-40px)] sticky top-4 z-30`}
     >
-      <div className={`flex items-center justify-between gap-2 px-4 py-5 ${collapsed ? "px-2" : ""}`}>
-        {!collapsed ? (
-          <Logo size="sm" />
-        ) : (
-          <div className="mx-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[rgba(253,184,19,0.4)] bg-gradient-to-br from-[#0F4C81] to-[#0A2A47] overflow-hidden">
-            <img
-              src="/nmo-logo.png"
-              alt="N.M.O"
-              className="h-full w-full object-contain p-1"
-              draggable={false}
-            />
-          </div>
-        )}
-
-        <button
+        <div
           onClick={() => setCollapsed(!collapsed)}
-          className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[rgba(255,255,255,0.1)] bg-white/5 text-[#B9C6D6] transition hover:bg-white/10 hover:text-white ${collapsed ? "absolute -right-3 top-5 z-10 h-8 w-8" : ""}`}
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-        </button>
-      </div>
+          className={`flex cursor-pointer items-center justify-center px-4 py-5 ${collapsed ? "px-2" : ""}`}
+          >
+          {!collapsed ? (
+            <Logo size="sm" />
+          ) : (
+            <div className="mx-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[rgba(253,184,19,0.4)] bg-gradient-to-br from-[#0F4C81] to-[#0A2A47] overflow-hidden">
+              <img
+                src="/nmo-logo.png"
+                alt="N.M.O"
+                className="h-full w-full object-contain p-1"
+                draggable={false}
+              />
+            </div>
+          )}
+        </div>
 
       <div className="mx-4 mb-4 h-px shrink-0 bg-gradient-to-r from-transparent via-[rgba(253,184,19,0.3)] to-transparent" />
 

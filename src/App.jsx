@@ -1,10 +1,19 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  useLocation,
+} from "react-router-dom";
 
+import { useState } from "react";
+import { useEffect } from "react";
+import RoleProtectedRoute from "./components/RoleProtectedRoute";
 import Login from "./components/Login";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
-import Certifications from "./components/Certificate";
+import Certificate from "./components/Certificate";
 import Shipping from "./components/Shipping";
 import MineralSources from "./components/MineralSources";
 import Records from "./components/Records";
@@ -12,15 +21,24 @@ import Harvesting from "./components/Harvesting";
 import Settings from "./components/Settings";
 import ForgotPassword from "./context/ForgotPassword";
 import ResetPassword from "./context/ResetPassword";
+import RequestAccess from "./context/RequestAccess";
+import AdminDashboard from "./pages/management/AdminDashboard";
+import ManagerDashboard from "./pages/management/ManagerDashboard";
+import InspectorDashboard from "./pages/management/InspectorDashboard";
+import WorkerDashboard from "./pages/management/WorkerDashboard";
+import ManagementWidget from "./components/widgets/ManagementWidget";
+import ManagementPanel from "./components/widgets/ManagementPanel";
+import { authenticateManagement } from "./components/api";
+import AccessRequests from "./pages/management/AccessRequests";
 
 const pageTitles = {
-  "/": "Dashboard",
-  "/certifications": "Certificates",
-  "/shipping": "Verification",
-  "/mineral-sources": "Analytics",
-  "/records": "Reports",
-  "/harvesting": "Training",
-  "/settings": "Settings",
+  "/dashboard": "Dashboard",
+  "/dashboard/certifications": "Certificates",
+  "/dashboard/shipping": "Verification",
+  "/dashboard/mineral-sources": "Analytics",
+  "/dashboard/records": "Reports",
+  "/dashboard/harvesting": "Training",
+  "/dashboard/settings": "Settings",
 };
 
 function Layout() {
@@ -29,27 +47,16 @@ function Layout() {
 
   return (
     <div className="relative flex h-screen overflow-hidden bg-[#0A1628]">
-      {/* Full-screen mining hero background */}
       <div className="mining-bg" />
 
-      {/* Sidebar */}
       <Sidebar />
 
-      {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         <Header title={title} />
 
-        <main className="relative flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 pb-8">
+        <main className="relative flex-1 overflow-y-auto px-4 pb-8 md:px-6 lg:px-8">
           <div className="mx-auto max-w-[1600px]">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/certifications" element={<Certifications />} />
-              <Route path="/shipping" element={<Shipping />} />
-              <Route path="/mineral-sources" element={<MineralSources />} />
-              <Route path="/records" element={<Records />} />
-              <Route path="/harvesting" element={<Harvesting />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
+            <Outlet />
           </div>
         </main>
       </div>
@@ -57,32 +64,164 @@ function Layout() {
   );
 }
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+
+  const [managementOpen, setManagementOpen] = useState(false);
+
+  const showManagementWidget =
+    location.pathname.startsWith("/dashboard");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    const token = params.get("token");
+    const googleLogin = params.get("google_login");
+    const username = params.get("username");
+    const role = params.get("role");
+
+    if (googleLogin && token) {
+      localStorage.setItem("access_token", token);
+
+      if (username) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            username,
+            role,
+          })
+        );
+      }
+
+      window.history.replaceState(
+        {},
+        "",
+        "/dashboard"
+      );
+    }
+  }, []);
+
   return (
-      <BrowserRouter>
-        <Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Login />} />
 
-          {/* Authentication */}
+        <Route path="/login" element={<Login />} />
 
-          <Route path="/login" element={<Login />} />
+        <Route
+          path="/forgot-password"
+          element={<ForgotPassword />}
+        />
+
+        <Route
+          path="/management/access-requests"
+          element={<AccessRequests />}
+        />
+
+        <Route
+          path="/reset-password/:token"
+          element={<ResetPassword />}
+        />
+
+        <Route
+          path="/request-access"
+          element={<RequestAccess />}
+        />
+
+        <Route
+          path="/dashboard"
+          element={<Layout />}
+        >
+          <Route index element={<Dashboard />} />
 
           <Route
-            path="/forgot-password"
-            element={<ForgotPassword />}
+            path="certifications"
+            element={<Certificate />}
           />
 
           <Route
-            path="/reset-password/:token"
-            element={<ResetPassword />}
+            path="shipping"
+            element={<Shipping />}
           />
 
-          {/* Main Application */}
+          <Route
+            path="mineral-sources"
+            element={<MineralSources />}
+          />
 
-          <Route path="/*" element={<Layout />} />
+          <Route
+            path="records"
+            element={<Records />}
+          />
 
-        </Routes>
-      </BrowserRouter>
+          <Route
+            path="harvesting"
+            element={<Harvesting />}
+          />
+
+          <Route
+            path="settings"
+            element={<Settings />}
+          />
+
+          <Route
+            path="management/admin"
+            element={
+              <RoleProtectedRoute allowedRole="admin">
+                <AdminDashboard />
+              </RoleProtectedRoute>
+            }
+          />
+
+          <Route
+            path="management/manager"
+            element={
+              <RoleProtectedRoute allowedRole="manager">
+                <ManagerDashboard />
+              </RoleProtectedRoute>
+            }
+          />
+
+          <Route
+            path="management/inspector"
+            element={
+              <RoleProtectedRoute allowedRole="inspector">
+                <InspectorDashboard />
+              </RoleProtectedRoute>
+            }
+          />
+
+          <Route
+            path="management/worker"
+            element={
+              <RoleProtectedRoute allowedRole="worker">
+                <WorkerDashboard />
+              </RoleProtectedRoute>
+            }
+          />
+        </Route>
+      </Routes>
+
+      {showManagementWidget && (
+        <>
+          <ManagementWidget
+            onClick={() => setManagementOpen(true)}
+          />
+
+          <ManagementPanel
+            open={managementOpen}
+            onClose={() => setManagementOpen(false)}
+          />
+        </>
+      )}
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}

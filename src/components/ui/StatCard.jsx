@@ -65,7 +65,7 @@ export default function StatCard({
                 <div
                     className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-[0_14px_40px_-14px_rgba(15,76,129,0.8)]`}
                 >
-                    <Icon size={26} className="text-white" />
+                    {Icon && <Icon size={26} className="text-white" />}
                 </div>
             </div>
 
