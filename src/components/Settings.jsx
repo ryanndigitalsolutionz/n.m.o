@@ -157,7 +157,7 @@ export default function Settings() {
           <div className="mt-6 text-[#B9C6D6] space-y-5">
             <div>
               <h4 className="font-bold text-xl text-white mb-2">
-                N.M.O (Minecert Pro) v1.0
+                N.M.O (Minecert Pro) v5.12
               </h4>
               <p>
                 Welcome to MineCert Pro, a premium enterprise mining training and certificate
@@ -194,7 +194,7 @@ export default function Settings() {
             <div>
               <h4 className="font-bold text-lg text-white mb-2">Future Vision</h4>
               <p>
-                MineCert Pro aims to evolve into a comprehensive mining intelligence platform
+                This new MineCert Pro aims to evolve into a comprehensive mining intelligence platform
                 with GIS mapping, advanced reporting, real-time operational monitoring,
                 multi-factor authentication, and data-driven decision-making tools for
                 mining stakeholders.
