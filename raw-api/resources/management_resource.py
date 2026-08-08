@@ -6,11 +6,6 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from extensions import db, bcrypt
 from services.permissions import require_management_role
 from services.notification_service import create_notification
-from app import app
-from extensions import db
-
-with app.app_context():
-    print(db.engine.url)
 
 
 class ManagementLoginResource(Resource):
