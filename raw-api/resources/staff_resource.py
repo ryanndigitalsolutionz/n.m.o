@@ -15,21 +15,8 @@ class StaffListResource(Resource):
     @jwt_required()
     def get(self):
 
-            print("JWT identity:", get_jwt_identity())
-            print("JWT claims:", get_jwt())
-
-            denied = require_management_role(
-                "admin",
-                "manager",
-                "inspector",
-            )
-
-            if denied:
-                print("Permission denied:", denied)
-                return denied
-
-    @jwt_required()
-    def get(self):
+        print("JWT identity:", get_jwt_identity())
+        print("JWT claims:", get_jwt())
 
         denied = require_management_role(
             "admin",
@@ -38,6 +25,7 @@ class StaffListResource(Resource):
         )
 
         if denied:
+            print("Permission denied:", denied)
             return denied
 
         users = User.query.order_by(
