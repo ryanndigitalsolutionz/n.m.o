@@ -9,11 +9,6 @@ from flask_jwt_extended import (
     get_jwt,
     get_jwt_identity,
 )
-from app import app
-from extensions import db
-
-with app.app_context():
-    print(db.engine.url)
 
 class StaffListResource(Resource):
 
