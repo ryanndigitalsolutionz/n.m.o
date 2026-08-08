@@ -38,8 +38,20 @@ class User(db.Model):
         default=datetime.utcnow
     )
 
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+    online = db.Column(db.Boolean, default=False)
+    last_active = db.Column(db.DateTime, nullable=True)
+
+    
+
     site_records = db.relationship(
         "SiteRecord",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
+
+    notifications = db.relationship(
+        "Notification",
         back_populates="user",
         cascade="all, delete-orphan"
     )

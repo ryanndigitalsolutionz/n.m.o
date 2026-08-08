@@ -199,7 +199,50 @@ export default function Settings() {
             </button>
           </Link>
         </div>
-      </div>
+      </SectionCard>
+
+      {/* About */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="panel rounded-[26px] p-6"
+      >
+        <button
+          onClick={() => setShowAbout(!showAbout)}
+          className="w-full flex justify-between items-center text-left"
+        >
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0F4C81] to-[#1E6FB8]">
+              <Info className="text-white" size={22} />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white">About MineCert Pro</h3>
+              <p className="text-sm text-[#7C8CA3]">
+                Learn more about MineCert Pro and its mission.
+              </p>
+            </div>
+          </div>
+
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/[0.06] text-[#FDB813]">
+            {showAbout ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          </span>
+        </button>
+
+        {showAbout && (
+          <div className="mt-6 text-[#B9C6D6] space-y-5">
+            <div>
+              <h4 className="font-bold text-xl text-white mb-2">
+                N.M.O (Minecert Pro) v5.12
+              </h4>
+              <p>
+                Welcome to MineCert Pro, a premium enterprise mining training and certificate
+                management platform designed for modern mining enterprises. As a transformation of Nairobi Mining 
+                Operations and the most trusted in Kenya, the platform
+                streamlines employee management, training, certification, verification,
+                reporting, and analytics from a single centralized dashboard.
+              </p>
+            </div>
 
       {/* About N.M.O */}
 <div className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -300,6 +343,18 @@ export default function Settings() {
     Save Changes
 </button>
 
+            <div>
+              <h4 className="font-bold text-lg text-white mb-2">Future Vision</h4>
+              <p>
+                This new MineCert Pro aims to evolve into a comprehensive mining intelligence platform
+                with GIS mapping, advanced reporting, real-time operational monitoring,
+                multi-factor authentication, and data-driven decision-making tools for
+                mining stakeholders.
+              </p>
+            </div>
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 }

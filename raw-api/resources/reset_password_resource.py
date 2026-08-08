@@ -1,4 +1,4 @@
-from datetime import datetime, UTC
+from datetime import datetime
 
 from flask import request
 from flask_restful import Resource
@@ -39,7 +39,7 @@ class ResetPasswordResource(Resource):
                 "message": "Reset link has already been used."
             }, 409
 
-        if reset.expires_at < datetime.now(UTC):
+        if reset.expires_at < datetime.utcnow():
             return {
                 "success": False,
                 "message": "Reset link has expired."

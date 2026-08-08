@@ -43,7 +43,7 @@ class ForgotPasswordResource(Resource):
         db.session.add(reset)
         db.session.commit()
 
-        reset_link = f"http://localhost:5173/reset-password/{token}"
+        reset_link = f"https://n-m-o.vercel.app/reset-password/{token}"
 
         html = f"""
         <h2>Password Reset Request</h2>
