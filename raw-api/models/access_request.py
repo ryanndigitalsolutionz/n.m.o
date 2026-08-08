@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import requests
 from extensions import db
 
 
@@ -47,14 +47,18 @@ class AccessRequest(db.Model):
         default=datetime.utcnow
     )
 
-def to_dict(self):
-    return {
-        "request_id": self.request_id,
-        "first_name": self.first_name,
-        "last_name": self.last_name,
-        "email": self.email,
-        "residence": self.residence,
-        "reason": self.reason,
-        "status": self.status,
-        "created_at": self.created_at.isoformat()
-    }
+    def to_dict(self):
+        return {
+            "success": True,
+            "requests": [
+                {
+                    "id": r.request_id,
+                    "name": f"{r.first_name} {r.last_name}",
+                    "email": r.email,
+                    "requested_role": "Employee",
+                    "status": r.status,
+                    "created_at": r.created_at.isoformat(),
+                }
+        for r in requests
+    ]
+}, 200

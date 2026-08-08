@@ -4,7 +4,6 @@ from flask_cors import CORS
 
 from config import Config
 from extensions import db, ma, bcrypt, jwt, migrate, oauth, mail
-from services.email_service import send_email
 
 from resources.auth_resource import (
     RegisterResource,
@@ -22,13 +21,15 @@ from resources.vehicle_resource import VehicleListResource, VehicleResource
 from resources.shipment_resource import ShipmentListResource, ShipmentResource
 from resources.site_record_resource import SiteRecordListResource, SiteRecordResource
 from resources.google_auth_resource import GoogleLoginResource, GoogleCallbackResource
-from resources.invitation_resource import InvitationResource
-from resources.accept_invitation_resource import AcceptInvitationResource
 from resources.forgot_password_resource import ForgotPasswordResource
 from resources.reset_password_resource import ResetPasswordResource
 from resources.settings_resource import SettingsResource
-from resources.access_request_resource import AccessRequestListResource
+from resources.access_request_resource import AccessRequestListResource, ApproveAccessRequestResource, RejectAccessRequestResource
 from resources.access_request_status_resource import AccessRequestStatusResource
+from resources.notification_resource import NotificationListResource, NotificationReadResource
+from resources.management_resource import ManagementLoginResource, AdminDashboardResource, ManagerDashboardResource, InspectorDashboardResource, WorkerDashboardResource, ManagementLogoutResource
+from resources.management_auth_resource import ManagementAuthResource
+from resources.staff_resource import StaffListResource
 
 def create_app():
     app = Flask(__name__)
@@ -36,7 +37,13 @@ def create_app():
 
     CORS(
         app,
-        resources={r"/api/*": {"origins": "http://localhost:5173"}},
+        resources={
+            r"/api/*": {
+                "origins": [
+                    "https://n-m-o.vercel.app"
+                ]
+            }
+        },
         supports_credentials=True,
     )
 
@@ -121,8 +128,8 @@ def create_app():
 
     # ---------- Invitations ----------
 
-    api.add_resource(InvitationResource, "/api/invitations")
-    api.add_resource(AcceptInvitationResource, "/api/invitations/accept")
+    api.add_resource(ApproveAccessRequestResource, "/api/access-requests/<int:request_id>/approve",)
+    api.add_resource(RejectAccessRequestResource, "/api/access-requests/<int:request_id>/reject",)
 
     # ---------- Password Resets ----------
 
@@ -137,6 +144,22 @@ def create_app():
 
     api.add_resource(AccessRequestListResource, "/api/access-requests")
     api.add_resource(AccessRequestStatusResource, "/api/access-requests/<int:request_id>")
+
+    # ---------- Notifications ----------
+
+    api.add_resource(NotificationListResource, "/api/notifications")
+    api.add_resource(NotificationReadResource, "/api/notifications/<int:notification_id>")
+
+    # ---------- Management Console ----------
+
+    api.add_resource(ManagementAuthResource, "/api/management/auth")
+    api.add_resource(ManagementLoginResource, "/api/management/login")
+    api.add_resource(AdminDashboardResource, "/api/management/admin/dashboard")
+    api.add_resource(ManagerDashboardResource, "/api/management/manager/dashboard")
+    api.add_resource(InspectorDashboardResource, "/api/management/inspector/dashboard")
+    api.add_resource(WorkerDashboardResource, "/api/management/worker/dashboard")
+    api.add_resource(StaffListResource, "/api/management/staff")
+    api.add_resource(ManagementLogoutResource, "/api/management/logout")
 
     return app
 

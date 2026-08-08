@@ -6,3 +6,4 @@ from .certificate import Certificate
 from .vehicle import Vehicle
 from .shipment import Shipment
 from .site_record import SiteRecord
+from .notification import Notification
